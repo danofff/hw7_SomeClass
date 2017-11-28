@@ -10,14 +10,17 @@ namespace hw7_SomeClass
     {
         static void Main(string[] args)
         {
-            simpleClass c1 = new simpleClass();
-            simpleClass c2 = new simpleClass();
-            c1.printInfo();
-            c2.printInfo();
+            SimpleClass c1 = new SimpleClass();
+            SimpleClass c2 = new SimpleClass();
+            c1.PrintInfo();
+            c2.PrintInfo();
+
             Console.WriteLine("overload ==");
             Console.WriteLine(c1 == c2);
+
             Console.WriteLine("overload !=");
             Console.WriteLine(c1 != c2);
+
             Console.WriteLine("overload Equals");
             Console.WriteLine(c1.Equals(c2));
         }

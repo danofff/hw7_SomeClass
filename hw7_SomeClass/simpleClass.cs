@@ -6,52 +6,55 @@ using System.Threading.Tasks;
 
 namespace hw7_SomeClass
 {
-    class simpleClass
+    class SimpleClass
     {
         private static Random rnd = new Random();
-        private int someVar;
 
-        public int SomeVar
-        {
-            get { return someVar; }
-            set { someVar = value; }
-        }
-        private string someName;
+        public int SomeVar { get; set; }
+        public string SomeName { get; set; }
 
-        public string SomeName
+        public SimpleClass()
         {
-            get { return someName; }
-            set { someName = value; }
+            SomeVar = rnd.Next(0, 10);
+            SomeName = "Noname";
         }
-        public simpleClass()
+        public SimpleClass(int someVar):this(someVar,"Noname")
         {
-            this.SomeVar = rnd.Next(0, 10);
-            this.SomeName = "Noname";
+            //SomeVar = someVar;//избыточно!!!! если ты его сейчас передашв следующий конструктор!!!!
         }
-        public simpleClass(int someVar):this(someVar,"Noname")
+        public SimpleClass(int someVar,string someName)
         {
-            this.SomeVar = someVar;
+            SomeVar = someVar;
+            SomeName = someName;
         }
-        public simpleClass(int someVar,string someName)
+
+
+
+        /*
+         * Почему нет проверки на NULL, вдруг передадут пустыеклассы! Что тогда, ошибка!!!!
+         */
+        public static bool operator==(SimpleClass obj1,SimpleClass obj2)
         {
-            this.SomeVar = someVar;
-            this.SomeName = someName;
+            if (obj1 != null && obj2 != null)
+                return obj1.SomeVar == obj2.SomeVar;
+            else
+                return false;
         }
-        public static bool operator==(simpleClass obj1,simpleClass obj2)
+        public static bool operator !=(SimpleClass obj1, SimpleClass obj2)
         {
-            return obj1.SomeVar == obj2.SomeVar;
+            if (obj1 != null && obj2 != null)
+                return obj1.SomeVar != obj2.SomeVar;
+            else
+                return false;
         }
-        public static bool operator !=(simpleClass obj1, simpleClass obj2)
-        {
-            return obj1.SomeVar != obj2.SomeVar;
-        }
-        public  bool  Equals(simpleClass obj)
+
+        public  bool  Equals(SimpleClass obj)
         {
             return this.SomeVar == obj.SomeVar;
         }
-        public void printInfo()
+        public void PrintInfo()
         {
-            Console.WriteLine($"Name:{this.someName} Value: {this.SomeVar}");
+            Console.WriteLine($"Name:{SomeName} Value: {this.SomeVar}");
         }
     }
 }
